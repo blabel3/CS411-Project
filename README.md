@@ -1,38 +1,10 @@
 # CS411-Project 
-### Ideas:
+# Ideas
 
 ## Spotify Album Cover Generator
-Description (one paragraph):
-	
-Create an album cover that matches the playlist given the moods of the songs. Use information such as lyric key words, key, bpm, and song titles to determine shapes and colors ect of an image and use an image API to combine images and/or generate a new image.
 
-Database:
-	Some user preferences and the images that it generated for the user.
-	Graphics used to generate images.
+Website that lets people generate unique album covers for their spotify playlists. Currently spotify's automatic playlist covers are just some of the album arts stitched together, and the creator has to go and make an image themself if they want something memorable for it. Our app would make an album cover that fits the playlist given the moods of the songs automatically. It will use infortmation from the Spotify API like the lyric keywords, key, bpm, dancability, and song titles to determine images, shapes and colors to use. It will also use image APIs like Unsplash or Artbreeder to find cool images to include in the playlist cover. 
 
-Data sets (at least two):
-Spotify Data Catalogue (Spotify Web API)
-Some Image API? (Unsplash) (Google open images) (Artbreeder)
+## Recipe Helper Idea
 
-Third-Party Authentication:
-Spotify, Google, or Facebook or whatever for logins 
-
-Remember to implement using decoupled architecture!
-
-## Food/Cooking idea
-Description:
-Users input ingredients they have available and their dietary restrictions/goals and get a generated selection of recipes along with shopping lists for each one. The app also provides information about where the products from the shopping list can be found (at the best price nearby)
-Maybe returned recipes can be sorted in different aspects? Like sorting by calories, type of protein in it. Is it more meat based or more vegetable based. 
-The application also tracks calories to help the user achieve calorie goals. 
-
-Database:
-	Store users’ dietary restrictions/goal macronutrients & calorie goals
-
-Datasets:
-	Food & Recipe API (Spoonacular)
-	Instacart API for shopping cart/delivery options?
-
-Third-Party Authentication:
-	Google/Facebook/etc for logging in
-
-Remember to implement using architecture from class!
+This would be an app where users can log in, and input their calorie and macronutrient goals and any dietary restrictions, plus any food that they already have, and it will generate some recipes to help them meet that goal, and shopping lists for them to get any ingredients they need. It also provides information about where the products can be found, or lets users click to order using a delivery service like Instacart. When it's time to cook, they cna see the step by step instructions and even have the site set timers for them. They can plan out meals for the day or weeek, or just get it to suggest something when they're out of ideas. 
