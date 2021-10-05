@@ -1,7 +1,7 @@
-## CS411-Project
+# CS411-Project 
+### Ideas:
 
-Ideas
-# Spotify Album Cover Generator
+## Spotify Album Cover Generator
 Description (one paragraph):
 	
 Create an album cover that matches the playlist given the moods of the songs. Use information such as lyric key words, key, bpm, and song titles to determine shapes and colors ect of an image and use an image API to combine images and/or generate a new image.
@@ -19,7 +19,7 @@ Spotify, Google, or Facebook or whatever for logins
 
 Remember to implement using decoupled architecture!
 
-# Food/Cooking idea
+## Food/Cooking idea
 Description:
 Users input ingredients they have available and their dietary restrictions/goals and get a generated selection of recipes along with shopping lists for each one. The app also provides information about where the products from the shopping list can be found (at the best price nearby)
 Maybe returned recipes can be sorted in different aspects? Like sorting by calories, type of protein in it. Is it more meat based or more vegetable based. 
