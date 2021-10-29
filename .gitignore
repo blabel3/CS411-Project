@@ -10,3 +10,6 @@ Thumbs.db
 
 # Ignore built ts files
 dist/**/*
+
+# Code coverage reports
+coverage
