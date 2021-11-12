@@ -1,7 +1,4 @@
-import dotenv = require('dotenv');
 import app from "./app";
-
-dotenv.config();
 
 const port = process.env.SERVER_PORT;
 

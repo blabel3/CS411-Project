@@ -1,43 +1,42 @@
-const axios = require('axios').default;
+import axios from 'axios';
+
+const unsplash = axios.create({
+    baseURL: 'https://api.unsplash.com',
+    headers: {
+        'Accept-Version': 'v1',
+        'Authorization': `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`
+    }
+});
 
 
-export const getPhoto = (req, res) => {
+export const getRandomPhoto = (req, res) => {
 
-    axios.get(`https://api.unsplash.com/photos/random?query=${req.query.search}`, {
-        headers: {
-            'Accept-Version': 'v1',
-            'Authorization': `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`
-        }
-    })
+    let query = ''
+    if (req.query.search) {
+        query = `?query=${req.query.search}`
+    }
+
+    unsplash.get(`/photos/random${query}`)
         .then(function (response) {
             // handle success
             console.log(response);
-            res.send(`<style>
-            * {
-                margin: 0;
-                padding: 0;
-            }
-            .imgbox {
-                display: grid;
-                height: 100%;
-            }
-            .center-fit {
-                max-width: 100%;
-                max-height: 100vh;
-                margin: auto;
-            }
-        </style>
-        <div class="imgbox">
-            <img class="center-fit" src=${response.data.urls.raw}>
-        </div>`);
+            res.render("prototype/photo", {
+                photoUrl: response.data.urls.regular
+            });
         })
         .catch(function (error) {
             // handle error
             console.log(error);
+
+            if (error.response) {
+                res.status(error.response.status)
+                res.send(error.response.data)
+            } else {
+                res.status(504)
+                res.send("Something went wrong.");
+            }
+            
         })
-        .then(function () {
-            // always executed
-        });
 
 };
 
