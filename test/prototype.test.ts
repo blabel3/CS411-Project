@@ -13,5 +13,6 @@ describe("GET /prototype", () => {
                 expect(response.text).toContain("input");
                 expect(response.text).toContain("submit");
             })
+            .end(done);
     });
 });

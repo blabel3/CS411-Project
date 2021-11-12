@@ -7,7 +7,7 @@ describe("GET /photo/", () => {
             .expect(200)
             .expect(response => {
                 expect(response.text).toContain("img");
-                expect(response.text).toContain("src=https://images.unsplash.com");
+                expect(response.text).toContain("https://images.unsplash.com");
             })
             .end(done);
     });
@@ -16,7 +16,7 @@ describe("GET /photo/", () => {
             .expect(200)
             .expect(response => {
                 expect(response.text).toContain("img");
-                expect(response.text).toContain("src=https://images.unsplash.com");
+                expect(response.text).toContain("https://images.unsplash.com");
             })
             .end(done);
     });
