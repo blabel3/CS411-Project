@@ -10,8 +10,8 @@ describe("GET /prototype", () => {
     it("should have a input field and a submit button", (done) => {
         request(app).get("/prototype")
             .expect(response => {
-                if (!('input' in response.body)) throw new Error("No input field")
-                if (!('submit' in response.body)) throw new Error("No submit button")
+                expect(response.text).toContain("input");
+                expect(response.text).toContain("submit");
             })
     });
 });

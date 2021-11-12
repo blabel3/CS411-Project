@@ -6,8 +6,8 @@ describe("GET /photo/", () => {
         request(app).get("/photo")
             .expect(200)
             .expect(response => {
-                if (!('img' in response.body)) throw new Error("No image")
-                if (!('src=https://images.unsplash.com' in response.body)) throw new Error("Bad image URL")
+                expect(response.text).toContain("img");
+                expect(response.text).toContain("src=https://images.unsplash.com");
             })
             .end(done);
     });
@@ -15,8 +15,8 @@ describe("GET /photo/", () => {
         request(app).get("/photo?search=prototype")
             .expect(200)
             .expect(response => {
-                if (!('img' in response.body)) throw new Error("No image")
-                if (!('src=https://images.unsplash.com' in response.body)) throw new Error("Bad image URL")
+                expect(response.text).toContain("img");
+                expect(response.text).toContain("src=https://images.unsplash.com");
             })
             .end(done);
     });

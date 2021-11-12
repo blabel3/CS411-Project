@@ -6,7 +6,7 @@ describe("GET /", () => {
         request(app).get("/")
             .expect(200)
             .expect(response => {
-                if (!('Hello world!' in response.body)) throw new Error("No message")
+                expect(response.text).toContain("Hello World!");
             })
             .end(done);
     });
