@@ -10,7 +10,7 @@
     "build": "tsc",
     "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "start": "node -r dotenv/config dist/server.js",
-    "test": "jest --coverage"
+    "test": "jest --setupFiles dotenv/config --coverage"
   },
   "repository": {
     "type": "git",

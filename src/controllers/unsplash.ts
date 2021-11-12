@@ -11,32 +11,32 @@ const unsplash = axios.create({
 
 export const getRandomPhoto = (req, res) => {
 
-    let query = ''
+    let query = '';
     if (req.query.search) {
-        query = `?query=${req.query.search}`
+        query = `?query=${req.query.search}`;
     }
 
     unsplash.get(`/photos/random${query}`)
-        .then(function (response) {
+        .then( response => {
             // handle success
             console.log(response);
             res.render("prototype/photo", {
                 photoUrl: response.data.urls.regular
             });
         })
-        .catch(function (error) {
+        .catch( error => {
             // handle error
             console.log(error);
 
             if (error.response) {
-                res.status(error.response.status)
-                res.send(error.response.data)
+                res.status(error.response.status);
+                res.send(error.response.data);
             } else {
-                res.status(504)
+                res.status(504);
                 res.send("Something went wrong.");
             }
             
-        })
+        });
 
 };
 
