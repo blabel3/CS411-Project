@@ -1,4 +1,4 @@
-# CS411-Project 
+# CS411-Project [![CI Lint & Testing](https://github.com/blabel3/CS411-Project/actions/workflows/verify-code.yml/badge.svg)](https://github.com/blabel3/CS411-Project/actions/workflows/verify-code.yml)
 
 ## Spotify Album Cover Generator
 
