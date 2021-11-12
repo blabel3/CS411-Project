@@ -6,7 +6,7 @@ describe("GET /", () => {
         request(app).get("/")
             .expect(200)
             .expect(response => {
-                expect(response.body).toContain("Hello world!");
+                expect(response.text).toContain("Hello world!");
             })
             .end(done);
     });
