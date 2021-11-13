@@ -1,6 +1,10 @@
 html
     style
         include styles.css 
+    body 
+        form(action="/photo/")
+            input(type="text", placeholder="Search...", name="search")
+            button(type="submit") Submit
 
 .imgbox
     img.center-fit(src=photoUrl)
