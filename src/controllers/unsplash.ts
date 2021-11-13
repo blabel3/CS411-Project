@@ -1,17 +1,17 @@
-import axios from 'axios';
+import axios from "axios";
 
 const unsplash = axios.create({
-    baseURL: 'https://api.unsplash.com',
+    baseURL: "https://api.unsplash.com",
     headers: {
-        'Accept-Version': 'v1',
-        'Authorization': `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`
+        "Accept-Version": "v1",
+        "Authorization": `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`
     }
 });
 
 
 export const getRandomPhoto = (req, res) => {
 
-    let query = '';
+    let query = "";
     if (req.query.search) {
         query = `?query=${req.query.search}`;
     }
