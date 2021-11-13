@@ -4,8 +4,10 @@ import app from "../src/app";
 describe("GET /", () => {
     it("should say Hello World!", (done) => {
         request(app).get("/")
-            .expect("Hello World!")
             .expect(200)
+            .expect(response => {
+                expect(response.text).toContain("Hello world!");
+            })
             .end(done);
     });
 });
