@@ -53,3 +53,23 @@ Then, you can make your edits (probably to files in src/ and test/) and commit +
 
 It'll automatically test the code in the PR, and lets people have a chance to look at the code, add in anything that's missing, etc.
 
+# Repo Structure Explanation
+
+* .github/workflows/verify-code.yml: File defining the Github Action that runs our tests whenever we make a Pull Request
+* docs/: Documentation and files for assignments we submit for the project.
+* prototype/: Built files we made for the third assignment, making a prototype
+* **src/: All the actual source code for our project! The main stuff**
+  * src/views: frontend code (currently using Pug with Node to render html)
+  * src/controllers: Where the code for our endpoints lives. The meat.
+  * src/server.ts: Web server setup/loading configuration.
+  * src/app.ts: The main application code, defining our routes and telling it what to run when people go to those endpoints of our server.
+* **test/: All the tests written for our source code! Also very important.**
+* .eslintignore: File saying what files the code linter should ignore
+* .eslintrc.js: Config file for our code linter (eslint). The linter helps check our code for errors that might still compile but are probably not intended behavior, and also helps fix some formatting issues too.
+* .gitignore: Files that will not be committed in our repo
+* jest.config.js: The configuration for the tester, jest. This is what we use to run automated tests on our code.
+* package-lock.json: File that defines specific versions for every package that is used in the project (*all* dependencies)
+* **package.json: The project setup file for Node! Defines what packages we rely on, what scripts we run for building/testing/everything else.**
+* tsconfig.json: Configuration file for the typescript compiler. This is how we build from typescript in src/ to compatible javascript in dist/ 
+
+Also, we should all have an .env file with important variables, but this will never be checked in to source control!
