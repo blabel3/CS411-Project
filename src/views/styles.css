@@ -1,0 +1,35 @@
+*{
+    background-color:rgb(47, 51, 47);
+    font-family: 'Franklin Gothic Medium';
+}
+h1{
+    text-align: center;
+    text-size-adjust: 20px;
+    color: rgb(47, 180, 47);
+}
+.top_navbar{
+    list-style-type: none;
+    color: rgb(47, 180, 47);
+    text-align: left;
+}
+.nav_list{
+    display: inline;
+    color: rgb(47, 180, 47);
+}
+.center_circle{
+    color:white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: rgb(37, 41, 37);
+    justify-content: center;
+}
+.directions{
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: rgb(37, 41, 37);
+}
