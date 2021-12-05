@@ -1,0 +1,23 @@
+html
+    style 
+        include styles.css
+
+body
+    header
+        nav.top_navbar 
+            ul.nav_list
+                li 
+                    a(href="logged_in_home.pug") Home
+                li Profile
+                li 
+                    a(href="gallery.pug") Gallery
+        h1 Spotify Playlist Cover Generator
+    body
+        .center
+            ol.directions
+                li Enter a Spotify Playlist link or choose one of yours
+                li Then press submit to generate your playlist cover
+        .center
+            form(action="/photo/")
+            input(type="text", placeholder="Spotify Playlist", name="search")
+            button(type="submit") Submit  
