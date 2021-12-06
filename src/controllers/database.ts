@@ -26,7 +26,7 @@ export async function setupDB() {
     const { database } = await client.databases.createIfNotExists({
       id: databaseId
     });
-    console.log(`Created database:\n${database.id}\n`);
+    console.log(`Created/See database:\n${database.id}\n`);
   
     /**
      * Create the container if it does not exist
@@ -38,8 +38,8 @@ export async function setupDB() {
         { offerThroughput: 400 }
       );
   
-    console.log(`Created container:\n${container.id}\n`);
+    console.log(`Created/See container:\n${container.id}\n`);
   }
 
-  
+
 
