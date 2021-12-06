@@ -5,12 +5,7 @@ html
 body
     header
         nav.top_navbar 
-            ul.nav_list
-                li 
-                    a(href="logged_in_home.pug") Home
-                li Profile
-                li 
-                    a(href="gallery.pug") Gallery
+            include includes/nav.pug
         h1 Spotify Playlist Cover Generator
     body
         .center
