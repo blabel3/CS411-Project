@@ -35,7 +35,6 @@ export async function setupDB() {
       .database(databaseId)
       .containers.createIfNotExists(
         { id: containerId, partitionKey },
-        { offerThroughput: 400 }
       );
   
     console.log(`Created/See container:\n${container.id}\n`);
