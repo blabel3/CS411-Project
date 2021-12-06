@@ -1,11 +1,15 @@
 import express from "express";
 import path from 'path';
 import * as unsplashController from "./controllers/unsplash";
+import * as databaseController from "./controllers/database";
 
 // Create express web app
 const app = express();
 app.set('views', path.join(__dirname, '../src/views'));
 app.set("view engine", "pug");
+
+// Make sure database is set up.
+databaseController.setupDB();
 
 app.get('/', (req, res) => {
     res.render("index");
