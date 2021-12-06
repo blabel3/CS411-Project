@@ -1,7 +1,7 @@
 const cosmosConfig = {
     endpoint: process.env.COSMOS_ENDPOINT,
     key: process.env.COSMOS_KEY,
-    databaseId: "Users",
+    databaseId: process.env.COSMOS_DATABASE,
     containerId: "Items",
     partitionKey: { kind: "Hash", paths: ["/category"] }
 };
