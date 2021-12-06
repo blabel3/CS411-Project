@@ -26,7 +26,6 @@ export async function setupDB() {
     const { database } = await client.databases.createIfNotExists({
       id: databaseId
     });
-    console.log(`Created/See database:\n${database.id}\n`);
   
     /**
      * Create the container if it does not exist
@@ -36,8 +35,7 @@ export async function setupDB() {
       .containers.createIfNotExists(
         { id: containerId, partitionKey },
       );
-  
-    console.log(`Created/See container:\n${container.id}\n`);
+      
   }
 
 

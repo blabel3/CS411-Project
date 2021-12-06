@@ -8,9 +8,6 @@ const app = express();
 app.set('views', path.join(__dirname, '../src/views'));
 app.set("view engine", "pug");
 
-// Make sure database is set up.
-databaseController.setupDB();
-
 app.get('/', (req, res) => {
     res.render("index");
   });
