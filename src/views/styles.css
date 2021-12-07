@@ -1,0 +1,33 @@
+*{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+header{
+    background-color: rgb(59, 63, 59)
+}
+body{
+    background-color: rgb(59, 63, 59)
+}
+h1{
+    text-align: center;
+    text-size-adjust: 30px;
+    color: rgb(47, 180, 47);
+}
+.top_navbar{
+    list-style-type: none;
+    color: rgb(47, 180, 47);
+    text-align: left;
+    background-color: rgb(47, 51, 47);
+}
+.nav_list{
+    display: inline;
+    color: rgb(47, 180, 47);
+}
+.center{
+    color:white;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    text-size-adjust: 15px;
+}
