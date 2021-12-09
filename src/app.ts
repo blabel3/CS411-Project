@@ -3,7 +3,6 @@ import express from "express";
 import session from 'express-session';
 
 import * as unsplashController from "./controllers/unsplash";
-import * as databaseController from "./controllers/database";
 import passportController from "./controllers/passport";
 
 // Create express web app
