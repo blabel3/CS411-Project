@@ -18,7 +18,7 @@ passport.serializeUser(async (user:IUser, done) => {
 
 passport.deserializeUser(async (user:IUser, done) => {
     // TODO: Fetch user from our db
-  console.log('Deserialize')
+  console.log('Deserialize');
   //console.log(id);
   const dbUser = await User.findUserByID(user.id);
   done(null, dbUser);
@@ -32,7 +32,7 @@ passport.use(
   },
   async (accessToken, refreshToken, expires_in, profile, done) => {
     //return done(null, profile);
-    console.log('Hooha')
+    console.log('Hooha');
     const user = await User.findOrCreateUser({id: profile.id, name: profile.displayName, profileImage: profile.photos[0].value});
     console.log(user);
     return done(null, user);

@@ -18,7 +18,7 @@ class User implements IUser {
     }
 
     static async findOrCreateUser(user:IUser): Promise<IUser> {
-        const dbUser = await databaseController.insertUserIfNotPresent(user)
+        const dbUser = await databaseController.insertUserIfNotPresent(user);
         return dbUser;
     }
 
@@ -26,6 +26,6 @@ class User implements IUser {
         const dbUser = await databaseController.findById<IUser>(id);
         return dbUser;
     }
-};
+}
 
 export default User;
