@@ -17,13 +17,13 @@ app.use(passportController.session());
 
 // Routes 
 app.get('/', (req, res) => {
-  const user = <IUser> req.user
+  const user = <IUser> req.user;
   console.log(`User: ${user?.name}`);
   if (user){
     res.render("index", {
       displayName: user.name,
       profileImage: user.profileImage
-    })
+    });
   } else {
     res.render("index");
   }
@@ -41,7 +41,7 @@ app.get('/auth/spotify',
     ],
     // This is an option that's supposed to make the dialogue always show, but the passport-spotify team 
     // seems to not reference it in theri strategy so we can't use this!
-    
+
     // showDialog: true  
   })
 );

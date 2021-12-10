@@ -50,12 +50,12 @@ export async function read<Type extends IDatabaseObject>(id: string): Promise<Ty
     const readReq = await container.item(id).read<Type>();
     const dbResponse = readReq.resource;
     return <Type & Resource> dbResponse;
-};
+}
 
 export async function update<Type extends IDatabaseObject>(obj: Type): Promise<Type> {
     // await setupDB(); Not needed, if doing update db should be in place.
     const replaceReq = await container.item(obj.id).replace<Type>(obj);
-    const updatedResponse = replaceReq.resource
+    const updatedResponse = replaceReq.resource;
     return <Type & Resource> updatedResponse;
 }
 

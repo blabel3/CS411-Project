@@ -30,7 +30,7 @@ passport.deserializeUser( (id:string, done) => {
         done(null, user);
     })
     .catch(error => {
-        done(error, null)
+        done(error, null);
     });
 });
 

@@ -12,7 +12,7 @@ export async function updateTokens(user: IUser, newAccessToken: string, newRefre
         profileImage: user.profileImage,
         accessToken: newAccessToken,
         refreshToken: newRefreshToken
-    }
+    };
     const newDbUser = await databaseController.update<IUser>(newUser);
     return newDbUser;
 }
@@ -28,7 +28,7 @@ export async function getUser(user:IUser): Promise<IUser> {
     if (dbUser) {
         console.log("User found in DB");
         console.log("Updating tokens...");
-        const updatedUser = await this.updateTokens(dbUser, user.accessToken, user.refreshToken)
+        const updatedUser = await this.updateTokens(dbUser, user.accessToken, user.refreshToken);
         return updatedUser;
     }
 
@@ -38,5 +38,5 @@ export async function getUser(user:IUser): Promise<IUser> {
 }
 
 export function findUserByID(id: string): Promise<IUser> {
-    return databaseController.read<IUser>(id)
+    return databaseController.read<IUser>(id);
 }
