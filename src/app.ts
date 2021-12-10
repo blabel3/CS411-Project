@@ -75,4 +75,5 @@ app.get('/playlist/', spotifyController.playlistEndpoint)
 
 app.get('/photo/', unsplashController.getRandomPhoto);
 
+
 export default app;
