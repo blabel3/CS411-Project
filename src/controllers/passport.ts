@@ -34,7 +34,7 @@ passport.deserializeUser( (id:string, done) => {
         done(null, user);
     })
     .catch(error => {
-        done(error, null);
+        done(error, false);
     });
 });
 
@@ -53,9 +53,9 @@ passport.use(
         refreshToken: refreshToken
     }).then(user => {
         console.log(user);
-        return done(null, user);
+        done(null, user);
     }).catch(error => {
-        return done(error, null);
+        done(error, null);
     });
   }
 ));

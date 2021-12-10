@@ -35,7 +35,8 @@
     "express-session": "^1.17.2",
     "passport": "^0.5.0",
     "passport-spotify": "^2.0.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
     "@types/eslint": "^7.28.2",
@@ -44,6 +45,7 @@
     "@types/jest": "^27.0.2",
     "@types/passport": "^1.0.7",
     "@types/passport-spotify": "^2.0.1",
+    "@types/spotify-web-api-node": "^5.0.4",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",

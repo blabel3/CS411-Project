@@ -3,6 +3,7 @@ import express from "express";
 import session from 'express-session';
 
 import * as unsplashController from "./controllers/unsplash";
+import * as spotifyController from "./controllers/spotify";
 import passportController from "./controllers/passport";
 import IUser from './models/IUser';
 
@@ -69,6 +70,8 @@ const ensureAuthenticated = (req, res, next) => {
   }
   res.redirect('/auth/spotify');
 };
+
+app.get('/playlist/', spotifyController.playlistEndpoint)
 
 app.get('/photo/', unsplashController.getRandomPhoto);
 
