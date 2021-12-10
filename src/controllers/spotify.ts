@@ -51,7 +51,7 @@ function cleanPlaylistInput(playlistInput: string): string {
   }
 }
 
-export function playlistEndpoint(req, res) {
+export async function playlistEndpoint(req, res) {
   let input = req.query?.playlist;
   if (!input){
     console.log("Nothing submitted.");
@@ -60,13 +60,10 @@ export function playlistEndpoint(req, res) {
 
   const cleanInput = cleanPlaylistInput(input);
 
-  if (cleanInput){
-    getPlaylistData(cleanInput).then(playlistData => {
-      res.send(playlistData);
-    }).catch(error => {
-      res.send(error);
-    });
-  } else {
+  if (!cleanInput){
     res.send(`Input seems to be invalid. Playlist ID: ${cleanInput}`)
   }
+
+  const playlistData = await getPlaylistData(cleanInput);
+  res.send(playlistData);
 }
