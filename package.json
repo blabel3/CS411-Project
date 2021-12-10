@@ -42,6 +42,7 @@
     "@types/express-session": "^1.17.4",
     "@types/jest": "^27.0.2",
     "@types/passport": "^1.0.7",
+    "@types/passport-spotify": "^2.0.1",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "@typescript-eslint/parser": "^5.2.0",
