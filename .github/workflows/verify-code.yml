@@ -43,9 +43,5 @@ jobs:
         run: npm run lint
       
       - name: Test the code
-        env:
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
-          COSMOS_ENDPOINT: ${{ secrets.COSMOS_ENDPOINT }}
-          COSMOS_KEY: ${{ secrets.COSMOS_KEY }}
-          COSMOS_DATABASE: ${{ secrets.COSMOS_DATABASE }}
+        environment: test
         run: npm run test
