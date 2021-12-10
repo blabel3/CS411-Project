@@ -6,7 +6,7 @@ describe("GET /", () => {
         request(app).get("/")
             .expect(200)
             .expect(response => {
-                expect(response.text).toContain("Hello world!");
+                expect(response.text).toContain("Spotify Playlist Cover Generator");
             })
             .end(done);
     });

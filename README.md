@@ -49,6 +49,8 @@ This will start the web server, and show a link to where it is running locally. 
 
 To make edits to the code, first, make sure you're in a new branch! The repo is set up to not allow commits directly on main so that none of us accidentally break everything.
 
+Then you can make your changes! Using `npm run dev` is a good way to test locally, since it will restart the server every time a change is made to the code. This way you don't have to stop the server, build again, and restart the server. 
+
 Then, you can make your edits (probably to files in src/ and test/) and commit + push them. Then, on github make a Pull Request to get them merged in. 
 
 It'll automatically test the code in the PR, and lets people have a chance to look at the code, add in anything that's missing, etc.
