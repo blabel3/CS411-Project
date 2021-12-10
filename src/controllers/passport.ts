@@ -4,6 +4,10 @@ import {Strategy as SpotifyStrategy} from 'passport-spotify';
 import IUser from '../models/IUser';
 import * as UserController from "./UserController";
 
+const callbackURL = process.env.COSMOS_DATABASE == "Users-Test" ? 
+`http://localhost:${process.env.PORT}/auth/spotify/callback` :
+`https://cs411-spotify-cover-generator.azurewebsites.net/auth/spotify/callback`
+
 /**
  * Session setup: Passport needs to be able to serialize and deserialize the users. 
  * This means we have to store the user ID in the database, and find the user ID when deserializing. 
@@ -38,7 +42,7 @@ passport.use(
   new SpotifyStrategy({
     clientID: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    callbackURL: `http://localhost:${process.env.PORT}/auth/spotify/callback`
+    callbackURL: callbackURL
   },
   (accessToken, refreshToken, expires_in, profile, done) => {
     // console.log(`aT: ${accessToken}, rT: ${refreshToken}, exp: ${expires_in}`)
