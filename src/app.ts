@@ -18,7 +18,7 @@ app.use(passportController.session());
 // Routes 
 app.get('/', (req, res) => {
   const user = <IUser> req.user
-  console.log(user);
+  console.log(`User: ${user?.name}`);
   if (user){
     res.render("index", {
       displayName: user.name,
@@ -39,7 +39,10 @@ app.get('/auth/spotify',
       'playlist-modify-private', 'playlist-read-private', 
       'playlist-modify-public', 'playlist-read-collaborative'
     ],
-    // showDialog: true
+    // This is an option that's supposed to make the dialogue always show, but the passport-spotify team 
+    // seems to not reference it in theri strategy so we can't use this!
+    
+    // showDialog: true  
   })
 );
 

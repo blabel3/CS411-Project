@@ -1,5 +1,5 @@
-import {CosmosClient, User} from "@azure/cosmos";
-import IUser from "../models/IUser";
+import {CosmosClient, Resource, User} from "@azure/cosmos";
+import IDatabaseObject from "../models/IDatabaseObject";
 
 const cosmosConfig = {
     endpoint: process.env.COSMOS_ENDPOINT,
@@ -38,25 +38,25 @@ export async function setupDB() {
       );
 }
 
-export async function insertUserIfNotPresent(user: IUser): Promise<IUser> {
+export async function create<Type extends IDatabaseObject>(obj: Type): Promise<Type> {
     await setupDB();
-    const readReq = await container.item(user.id).read<IUser>();
-    const dbResponse = readReq.resource;
-    if (dbResponse){ // ID already in database!
-        console.log("User found in DB");
-        return <IUser> dbResponse;
-    }
-
-    console.log("New user, not currently in DB");
-    const createReq = await container.items.create<IUser>(user);
-    return <IUser> createReq.resource;
+    const createReq = await container.items.create<Type>(obj);
+    const dbResponse = createReq.resource;
+    return <Type & Resource> dbResponse;
 }
 
-export async function findById<Type>(id: string): Promise<Type> {
+export async function read<Type extends IDatabaseObject>(id: string): Promise<Type> {
     await setupDB();
     const readReq = await container.item(id).read<Type>();
     const dbResponse = readReq.resource;
-    return <Type> dbResponse;
+    return <Type & Resource> dbResponse;
+};
+
+export async function update<Type extends IDatabaseObject>(obj: Type): Promise<Type> {
+    // await setupDB(); Not needed, if doing update db should be in place.
+    const replaceReq = await container.item(obj.id).replace<Type>(obj);
+    const updatedResponse = replaceReq.resource
+    return <Type & Resource> updatedResponse;
 }
 
 
