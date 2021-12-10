@@ -4,6 +4,7 @@ import session from 'express-session';
 
 import * as unsplashController from "./controllers/unsplash";
 import passportController from "./controllers/passport";
+import IUser from './models/IUser';
 
 // Create express web app
 const app = express();
@@ -16,8 +17,16 @@ app.use(passportController.session());
 
 // Routes 
 app.get('/', (req, res) => {
-  console.log(req.user);
-  res.render("index");
+  const user = <IUser> req.user
+  console.log(user);
+  if (user){
+    res.render("index", {
+      displayName: user.name,
+      profileImage: user.profileImage
+    })
+  } else {
+    res.render("index");
+  }
 });
 
 app.get('/prototype', (req, res) => {
@@ -38,7 +47,7 @@ app.get('/auth/spotify/callback',
   passportController.authenticate('spotify', {failureRedirect: '/'}),
   (req, res) => {
     // Authentication successful.
-    res.redirect('/logged_in_home');
+    res.redirect('/');
   }
 );
 

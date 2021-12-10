@@ -1,7 +1,11 @@
-nav.top_navbar 
-    ul.nav_list
-        li 
-            a(href="/logged_in_home") Home
-        li Profile
-        li 
-            a(href="/gallery") Gallery
+//- Check that user is logged in, otherwise, no nav options make sense. 
+if displayName
+    nav.top_navbar 
+        ul.nav_list
+            li 
+                img(src=profileImage)
+                p Hello, #{displayName}
+            li 
+                a(href="/") Home
+            li 
+                a(href="/gallery") Gallery
