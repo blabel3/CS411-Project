@@ -1,3 +1,6 @@
+import {CosmosClient, Resource, User} from "@azure/cosmos";
+import IDatabaseObject from "../models/IDatabaseObject";
+
 const cosmosConfig = {
     endpoint: process.env.COSMOS_ENDPOINT,
     key: process.env.COSMOS_KEY,
@@ -5,8 +8,6 @@ const cosmosConfig = {
     containerId: "Items",
     partitionKey: { kind: "Hash", paths: ["/category"] }
 };
-
-import {CosmosClient} from "@azure/cosmos";
 
 const { endpoint, key, databaseId, containerId } = cosmosConfig;
 
@@ -35,8 +36,28 @@ export async function setupDB() {
       .containers.createIfNotExists(
         { id: containerId, partitionKey },
       );
-      
-  }
+}
+
+export async function create<Type extends IDatabaseObject>(obj: Type): Promise<Type> {
+    await setupDB();
+    const createReq = await container.items.create<Type>(obj);
+    const dbResponse = createReq.resource;
+    return <Type & Resource> dbResponse;
+}
+
+export async function read<Type extends IDatabaseObject>(id: string): Promise<Type> {
+    await setupDB();
+    const readReq = await container.item(id).read<Type>();
+    const dbResponse = readReq.resource;
+    return <Type & Resource> dbResponse;
+}
+
+export async function update<Type extends IDatabaseObject>(obj: Type): Promise<Type> {
+    // await setupDB(); Not needed, if doing update db should be in place.
+    const replaceReq = await container.item(obj.id).replace<Type>(obj);
+    const updatedResponse = replaceReq.resource;
+    return <Type & Resource> updatedResponse;
+}
 
 
 

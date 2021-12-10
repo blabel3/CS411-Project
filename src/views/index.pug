@@ -4,13 +4,13 @@ html
 
 body
     header
-        nav.top_navbar 
-            ul.nav_list
+        include includes/nav.pug
         h1 Spotify Playlist Cover Generator
     body
-        .center Login to Spotify to save your playlist covers and view them in your gallery!  
-        .center3 
-            a(class='button' href='https://accounts.spotify.com/en/login') Login with Spotify
+        if !displayName
+            .center Login to Spotify to save your playlist covers and view them in your gallery!  
+            .center3 
+                a(class='button' href='/auth/spotify') Login with Spotify
         .center2
             ol.directions
                 li Enter a Spotify Playlist link
