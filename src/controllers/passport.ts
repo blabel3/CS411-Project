@@ -40,16 +40,19 @@ passport.use(
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     callbackURL: `http://localhost:${process.env.SERVER_PORT}/auth/spotify/callback`
   },
-  async (accessToken, refreshToken, expires_in, profile, done) => {
+  (accessToken, refreshToken, expires_in, profile, done) => {
     // console.log(`aT: ${accessToken}, rT: ${refreshToken}, exp: ${expires_in}`)
-    const user = await UserController.getUser({id: profile.id, 
+    UserController.getUser({id: profile.id, 
         name: profile.displayName, 
         profileImage: profile.photos[0],
         accessToken: accessToken,
         refreshToken: refreshToken
+    }).then(user => {
+        console.log(user);
+        return done(null, user);
+    }).catch(error => {
+        return done(error, null);
     });
-    console.log(user);
-    return done(null, user);
   }
 ));
 
