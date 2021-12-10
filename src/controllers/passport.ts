@@ -44,7 +44,7 @@ passport.use(
     // console.log(`aT: ${accessToken}, rT: ${refreshToken}, exp: ${expires_in}`)
     const user = await UserController.getUser({id: profile.id, 
         name: profile.displayName, 
-        profileImage: profile.photos[0].value,
+        profileImage: profile.photos[0],
         accessToken: accessToken,
         refreshToken: refreshToken
     });
