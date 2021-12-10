@@ -38,7 +38,7 @@ passport.use(
   new SpotifyStrategy({
     clientID: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    callbackURL: `http://localhost:${process.env.SERVER_PORT}/auth/spotify/callback`
+    callbackURL: `http://localhost:${process.env.PORT}/auth/spotify/callback`
   },
   (accessToken, refreshToken, expires_in, profile, done) => {
     // console.log(`aT: ${accessToken}, rT: ${refreshToken}, exp: ${expires_in}`)
