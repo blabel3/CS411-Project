@@ -1,6 +1,7 @@
 import express from "express";
 import path from 'path';
 import * as unsplashController from "./controllers/unsplash";
+import * as databaseController from "./controllers/database";
 
 // Create express web app
 const app = express();
