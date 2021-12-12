@@ -72,9 +72,28 @@ export async function playlistEndpoint(req, res) {
   const playlistData = await getPlaylistData(cleanInput);
 
   const trackIDs = playlistData["tracks"]["items"].map(song => song["track"]["id"]);
-  console.log(playlistData["tracks"]["items"]);
 
-  const audioFeaturesData = await getAudioFeaturesForTracks(trackIDs);
-
-  res.send(audioFeaturesData);
+  const audioFeaturesObject = await getAudioFeaturesForTracks(trackIDs);
+  const importantAudioFeatures = audioFeaturesObject["audio_features"]
+                                            .map(({danceability,
+                                                  energy,
+                                                  loudness,
+                                                  speechiness,
+                                                  acousticness,
+                                                  instrumentalness,
+                                                  liveness,
+                                                  valence,
+                                                  tempo}) => ({
+                                                       danceability,
+                                                       energy,
+                                                        loudness,
+                                                        speechiness,
+                                                        acousticness,
+                                                        instrumentalness,
+                                                        liveness,
+                                                        valence,
+                                                        tempo
+                                                       })
+                                                 );
+  res.send(importantAudioFeatures);
 }
