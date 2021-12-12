@@ -1,4 +1,3 @@
-import { restElement } from '@babel/types';
 import SpotifyWebApi from 'spotify-web-api-node';
 
 const callbackURL = process.env.COSMOS_DATABASE == "Users-Test" ? 
