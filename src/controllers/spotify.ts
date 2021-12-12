@@ -75,25 +75,12 @@ export async function playlistEndpoint(req, res) {
 
   const audioFeaturesObject = await getAudioFeaturesForTracks(trackIDs);
   const importantAudioFeatures = audioFeaturesObject["audio_features"]
-                                            .map(({danceability,
-                                                  energy,
-                                                  loudness,
-                                                  speechiness,
-                                                  acousticness,
-                                                  instrumentalness,
-                                                  liveness,
-                                                  valence,
-                                                  tempo}) => ({
-                                                       danceability,
-                                                       energy,
-                                                        loudness,
-                                                        speechiness,
-                                                        acousticness,
-                                                        instrumentalness,
-                                                        liveness,
-                                                        valence,
-                                                        tempo
-                                                       })
+                                            .map(({danceability, energy, loudness, speechiness, acousticness,
+                                                      instrumentalness, liveness, valence, tempo}) =>
+                                                 ({danceability, energy, loudness, speechiness, acousticness,
+                                                     instrumentalness, liveness, valence, tempo})
                                                  );
+
+
   res.send(importantAudioFeatures);
 }
