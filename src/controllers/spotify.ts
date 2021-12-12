@@ -81,6 +81,16 @@ export async function playlistEndpoint(req, res) {
                                                      instrumentalness, liveness, valence, tempo})
                                                  );
 
+    const featureAverages = importantAudioFeatures.reduce((prev, next) => {
+        for (const feature in prev) {
+            prev[feature] += next[feature];
+        }
+        return prev;
+    });
 
-  res.send(importantAudioFeatures);
+    for (const feature in featureAverages) {
+        featureAverages[feature] /= importantAudioFeatures.length;
+    }
+
+  res.send(featureAverages);
 }
