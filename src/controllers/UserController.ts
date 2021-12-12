@@ -37,6 +37,6 @@ export async function getUser(user:IUser): Promise<IUser> {
     return newDbUser;
 }
 
-export function findUserByID(id: string): Promise<IUser> {
-    return databaseController.read<IUser>(id);
+export async function findUserByID(id: string): Promise<IUser> {
+    return await databaseController.read<IUser>(id);
 }
