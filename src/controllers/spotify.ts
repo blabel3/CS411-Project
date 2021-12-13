@@ -1,5 +1,6 @@
 import SpotifyWebApi from 'spotify-web-api-node';
 import IPlaylistFeatures from '../models/IPlaylistFeatures';
+import IUser from '../models/IUser';
 import { getPhotoForPlaylist } from './unsplash';
 
 const callbackURL = process.env.COSMOS_DATABASE == "Users-Test" ? 
@@ -31,14 +32,22 @@ async function getClientAccessToken() {
   }
 }
 
-async function getPlaylistData(playlistID: string): Promise<SpotifyApi.SinglePlaylistResponse> {
-  await getClientAccessToken();
+async function getPlaylistData(playlistID: string, token?:string): Promise<SpotifyApi.SinglePlaylistResponse> {
+  if (token) {
+    spotifyApi.setAccessToken(token);
+  } else {
+    await getClientAccessToken();
+  }
   const playlistData = await spotifyApi.getPlaylist(playlistID);
   return playlistData?.body;
 }
 
-async function getAudioFeaturesForTracks(trackIDs: string[]): Promise<SpotifyApi.MultipleAudioFeaturesResponse> {
-  await getClientAccessToken();
+async function getAudioFeaturesForTracks(trackIDs: string[], token?:string): Promise<SpotifyApi.MultipleAudioFeaturesResponse> {
+  if (token) {
+    spotifyApi.setAccessToken(token);
+  } else {
+    await getClientAccessToken();
+  }
   const audioFeatures = await spotifyApi.getAudioFeaturesForTracks(trackIDs);
   return audioFeatures?.body;
 }
@@ -93,11 +102,13 @@ export async function playlistEndpoint(req, res) {
     res.send(`Input seems to be invalid. Playlist ID: ${cleanInput}`);
   }
 
-  const playlistData = await getPlaylistData(cleanInput);
+  const token = req.user?.accessToken;
+  console.log(token)
+  const playlistData = await getPlaylistData(cleanInput, token);
 
   const trackIDs = playlistData["tracks"]["items"].map(song => song["track"]["id"]);
 
-  const audioFeaturesObject = await getAudioFeaturesForTracks(trackIDs);
+  const audioFeaturesObject = await getAudioFeaturesForTracks(trackIDs, token);
   const featureAverages = getAudioFeatureAverages(audioFeaturesObject);
 
   console.log(featureAverages);
