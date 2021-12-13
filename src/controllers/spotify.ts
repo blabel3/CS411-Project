@@ -116,7 +116,9 @@ export async function playlistEndpoint(req, res) {
   try {
     const photo = await getPhotoForPlaylist(featureAverages);
     res.render("generated_cover", {
-      coverImage: photo
+      coverImage: photo,
+      displayName: req.user?.name,
+      profileImage: req.user?.profileImage
     });
   } catch (error) {
     res.send(error);

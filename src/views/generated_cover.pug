@@ -13,6 +13,6 @@ body
             img(src=coverImage)
         .center
             if displayName
-                button Set as playlist cover  
-            button(onClick="window.location.reload();") Regenerate  
+                a.button(href='/set-cover') Set as playlist cover  
+            button.button(onClick="window.location.reload();") Regenerate  
         

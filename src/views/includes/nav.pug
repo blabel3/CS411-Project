@@ -2,10 +2,13 @@
 if displayName
     nav.top_navbar 
         ul.nav_list
-            li 
+            li.nav_item
                 img(src=profileImage)
-                p Hello, #{displayName}
-            li 
+            li.nav_item 
+                p.profile_name Hello, #{displayName}
+            li.nav_item
                 a(href="/") Home
-            li 
+            li.nav_item
                 a(href="/gallery") Gallery
+            li.nav_item 
+                a(href="/logout") Logout
