@@ -1,5 +1,5 @@
 interface IDatabaseObject {
-    id: string
+  id: string;
 }
 
 export default IDatabaseObject;

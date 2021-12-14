@@ -3,40 +3,47 @@ import IUser from "../models/IUser";
 
 import * as databaseController from "./database";
 
-
-export async function updateTokens(user: IUser, newAccessToken: string, newRefreshToken: string) {
-    // We assume databse is already set up. 
-    const newUser: IUser = {
-        id: user.id,
-        name: user.name,
-        profileImage: user.profileImage,
-        accessToken: newAccessToken,
-        refreshToken: newRefreshToken
-    };
-    const newDbUser = await databaseController.update<IUser>(newUser);
-    return newDbUser;
+export async function updateTokens(
+  user: IUser,
+  newAccessToken: string,
+  newRefreshToken: string
+) {
+  // We assume databse is already set up.
+  const newUser: IUser = {
+    id: user.id,
+    name: user.name,
+    profileImage: user.profileImage,
+    accessToken: newAccessToken,
+    refreshToken: newRefreshToken,
+  };
+  const newDbUser = await databaseController.update<IUser>(newUser);
+  return newDbUser;
 }
 
 /**
- * 
- * @param user Either gets user from database or creates user in database. Updates tokens if needed. 
- * @returns 
+ *
+ * @param user Either gets user from database or creates user in database. Updates tokens if needed.
+ * @returns
  */
-export async function getUser(user:IUser): Promise<IUser> {
-    const dbUser = await databaseController.read<IUser>(user.id);
+export async function getUser(user: IUser): Promise<IUser> {
+  const dbUser = await databaseController.read<IUser>(user.id);
 
-    if (dbUser) {
-        console.log("User found in DB");
-        console.log("Updating tokens...");
-        const updatedUser = await this.updateTokens(dbUser, user.accessToken, user.refreshToken);
-        return updatedUser;
-    }
+  if (dbUser) {
+    console.log("User found in DB");
+    console.log("Updating tokens...");
+    const updatedUser = await this.updateTokens(
+      dbUser,
+      user.accessToken,
+      user.refreshToken
+    );
+    return updatedUser;
+  }
 
-    console.log("New user, not currently in DB");
-    const newDbUser = await databaseController.create<IUser>(user);
-    return newDbUser;
+  console.log("New user, not currently in DB");
+  const newDbUser = await databaseController.create<IUser>(user);
+  return newDbUser;
 }
 
 export async function findUserByID(id: string): Promise<IUser> {
-    return await databaseController.read<IUser>(id);
+  return await databaseController.read<IUser>(id);
 }
