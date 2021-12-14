@@ -13,6 +13,10 @@ body
             img(src=coverImage)
         .center
             if displayName
-                a.button(href='/set-cover') Set as playlist cover  
+                form(method="POST", action='/set-cover')
+                    input(name="coverImage", id="coverImage" value=`${coverImage}`)
+                    input(name="playlistId", id="playlistId", value=`${playlistId}`)
+                    button.button(type="submit") Set as playlist cover
             button.button(onClick="window.location.reload();") Regenerate  
         
+
