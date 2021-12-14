@@ -84,6 +84,8 @@ function cleanPlaylistInput(playlistInput: string): string {
     console.log(`cleaned input: ${playlistInput}`);
   }
 
+  playlistInput = playlistInput.substring(0, 22);
+
   const base62Regex = new RegExp("^[0-9A-Za-z_-]{22}$");
   if (base62Regex.test(playlistInput)) {
     return playlistInput;
@@ -137,13 +139,15 @@ export async function playlistEndpoint(req, res) {
   const input = req.query?.playlist;
   if (!input) {
     console.log("Nothing submitted.");
-    res.send("Empty lol");
+    res.send("Empty, no playlist id recieved.");
+    return;
   }
 
   const cleanInput = cleanPlaylistInput(input);
 
   if (!cleanInput) {
     res.send(`Input seems to be invalid. Playlist ID: ${cleanInput}`);
+    return;
   }
 
   const token = req.user?.accessToken;
