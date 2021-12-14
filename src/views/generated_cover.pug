@@ -11,8 +11,13 @@ body
             h2 Your new playlist cover:
         .center 
             img(src=coverImage)
-        .center
+        .center.generated_buttons_container
             if displayName
-                button Set as playlist cover  
-            button(onClick="window.location.reload();") Regenerate  
+                form(method="POST", action='/set-cover').set_cover
+                    input(name="coverImage", id="coverImage" value=`${coverImage}`)
+                    input(name="playlistId", id="playlistId", value=`${playlistId}`)
+                    button.button(type="submit") Set as playlist cover
+            button.button(onClick="window.location.reload();") Regenerate  
+            a.button(href="/") Back Home
         
+

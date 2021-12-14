@@ -12,6 +12,9 @@ const app = express();
 app.set('views', path.join(__dirname, '../src/views'));
 app.set("view engine", "pug");
 
+app.use(express.json({ limit: "4mb" }));       // to support JSON-encoded bodies
+app.use(express.urlencoded({ limit: "4mb" })); // to support URL-encoded bodies
+
 app.use(session({ secret: 'cool potato', resave: true, saveUninitialized: true }));
 app.use(passportController.initialize());
 app.use(passportController.session());
@@ -73,7 +76,13 @@ const ensureAuthenticated = (req, res, next) => {
 
 app.get('/playlist/', spotifyController.playlistEndpoint);
 
+app.post('/set-cover', spotifyController.replacePlaylistCoverEndpoint);
+
 app.get('/photo/', unsplashController.getRandomPhotoEndpoint);
+
+app.get('/gallery/', (req, res) => {
+  res.send('Not Implemented yet');
+});
 
 
 export default app;

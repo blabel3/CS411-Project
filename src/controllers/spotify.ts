@@ -1,6 +1,9 @@
 import SpotifyWebApi from 'spotify-web-api-node';
 import IPlaylistFeatures from '../models/IPlaylistFeatures';
 import { getPhotoForPlaylist } from './unsplash';
+import { createCover } from './canvas';
+import * as databaseController from "./database";
+import IUser from '../models/IUser';
 
 const callbackURL = process.env.COSMOS_DATABASE == "Users-Test" ? 
 `http://localhost:${process.env.PORT}/auth/spotify/callback` :
@@ -31,16 +34,29 @@ async function getClientAccessToken() {
   }
 }
 
-async function getPlaylistData(playlistID: string): Promise<SpotifyApi.SinglePlaylistResponse> {
-  await getClientAccessToken();
+async function getPlaylistData(playlistID: string, token?:string): Promise<SpotifyApi.SinglePlaylistResponse> {
+  if (token) {
+    spotifyApi.setAccessToken(token);
+  } else {
+    await getClientAccessToken();
+  }
   const playlistData = await spotifyApi.getPlaylist(playlistID);
   return playlistData?.body;
 }
 
-async function getAudioFeaturesForTracks(trackIDs: string[]): Promise<SpotifyApi.MultipleAudioFeaturesResponse> {
-  await getClientAccessToken();
+async function getAudioFeaturesForTracks(trackIDs: string[], token?:string): Promise<SpotifyApi.MultipleAudioFeaturesResponse> {
+  if (token) {
+    spotifyApi.setAccessToken(token);
+  } else {
+    await getClientAccessToken();
+  }
   const audioFeatures = await spotifyApi.getAudioFeaturesForTracks(trackIDs);
   return audioFeatures?.body;
+}
+
+async function updatePlaylistCover(playlistID: string, token: string, imageDataUrl: string) {
+  spotifyApi.setAccessToken(token);
+  return await spotifyApi.uploadCustomPlaylistCoverImage(playlistID, imageDataUrl);
 }
 
 function cleanPlaylistInput(playlistInput: string): string {
@@ -93,22 +109,81 @@ export async function playlistEndpoint(req, res) {
     res.send(`Input seems to be invalid. Playlist ID: ${cleanInput}`);
   }
 
-  const playlistData = await getPlaylistData(cleanInput);
+  const token = req.user?.accessToken;
+  console.log(token);
+  const playlistData = await getPlaylistData(cleanInput, token);
 
   const trackIDs = playlistData["tracks"]["items"].map(song => song["track"]["id"]);
 
-  const audioFeaturesObject = await getAudioFeaturesForTracks(trackIDs);
+  const audioFeaturesObject = await getAudioFeaturesForTracks(trackIDs, token);
   const featureAverages = getAudioFeatureAverages(audioFeaturesObject);
 
   console.log(featureAverages);
 
   try {
     const photo = await getPhotoForPlaylist(featureAverages);
+    const playlistCover = await createCover(photo, featureAverages);
     res.render("generated_cover", {
-      coverImage: photo
+      coverImage: playlistCover,
+      displayName: req.user?.name,
+      profileImage: req.user?.profileImage,
+      playlistId: playlistData.id
     });
   } catch (error) {
     res.send(error);
   }
   
+}
+
+export async function replacePlaylistCoverEndpoint(req, res) {
+  //console.log(req.body)
+  const playlistId = req.body?.playlistId;
+  if (!playlistId){
+    console.log("No playlist found.");
+    res.send("Error: no playlist found.");
+    return;
+  }
+
+  let coverImage = req.body?.coverImage;
+  if (!coverImage) {
+    console.log("No cover found.");
+    res.send("Error: no cover found.");
+    return;
+  }
+  // Must remove this part of the data url to work properly
+  coverImage = coverImage.substring("data:image/jpeg;base64,".length);
+
+  const user: IUser = req.user;
+  if (!req.user){
+    console.log("No user found.");
+    res.send("Error: no user found.");
+    return;
+  }
+
+  const token = req.user.accessToken;
+  console.log(token);
+
+  try {
+    await updatePlaylistCover(playlistId, token, coverImage);
+    if (!user.gallery){
+      user. gallery = [coverImage];
+    } else {
+      user.gallery.push(coverImage);
+    }
+
+    await databaseController.update(user);
+
+    res.render("index", {
+      displayName: user.name,
+      profileImage: user.profileImage,
+      playlistSet: true
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+  
+  
+
 }

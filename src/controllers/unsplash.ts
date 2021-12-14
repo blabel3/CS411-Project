@@ -16,7 +16,7 @@ const searchTermsMap = {
     speechiness: {high: ["rap", "song"], low: ["music"], threshold: 0.5},
     acousticness: {high: ["acoustic"], low: ["electronic"], threshold: 0.5},
     instrumentalness: {high: ["instrument", "instrumental"], low: ["vocal", "voice", "rap"], threshold: 0.5},
-    liveness: {high: ["audience", "concert"], low: ["record", "recording"], threshold: 0.5},
+    liveness: {high: ["audience", "concert"], low: [""], threshold: 0.5},
     valence: {high: ["happy", "cheerful", "euphoric"], low: ["sad", "depressed", "angry"], threshold: 0.5},
     tempo: {high: "fast", low: ["slow", "R&B"], threshold: 120}
 };
