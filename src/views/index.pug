@@ -1,24 +1,22 @@
-html
-    style 
-        include styles.css
+extends layout 
 
-body
-    header
-        include includes/nav.pug
-        h1 Spotify Playlist Cover Generator
-    body
-        if !displayName
-            .center Login to Spotify to save your playlist covers and view them in your gallery!  
-            .center3 
-                a(class='button' href='/auth/spotify') Login with Spotify
-        .center2
-            ol.directions
-                li Enter a Spotify Playlist link
-                li Then press submit to generate your playlist cover
-        form(action="/playlist/").submit-form
-            input(type="text", placeholder="Spotify Playlist", name="playlist")
-            button(class = "submit", type="submit") Submit  
+block heading 
+    h1 Spotify Playlist Cover Generator
+
+block content
+    if !displayName
         .center 
-            if playlistSet
-                p.successMessage New playlist cover set! Maybe you'd like to make another?
+            p.center-text Login to Spotify to save your playlist covers and view them in your gallery!  
+        .center
+            a(class='button' href='/auth/spotify') Login with Spotify
+    .center
+        ol.directions
+            li Enter a Spotify Playlist link
+            li Then press submit to generate your playlist cover
+    form(action="/playlist/").submit-form
+        input(type="text", placeholder="Spotify Playlist", name="playlist")
+        button(class = "submit", type="submit") Submit  
+    .center 
+        if playlistSet
+            p.successMessage New playlist cover set! Maybe you'd like to make another?
         
