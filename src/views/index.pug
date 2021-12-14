@@ -15,10 +15,10 @@ body
             ol.directions
                 li Enter a Spotify Playlist link
                 li Then press submit to generate your playlist cover
-        form(action="/playlist/")
+        form(action="/playlist/").submit-form
             input(type="text", placeholder="Spotify Playlist", name="playlist")
             button(class = "submit", type="submit") Submit  
         .center 
             if playlistSet
-                p New playlist cover set! Maybe you'd like to make another?
+                p.successMessage New playlist cover set! Maybe you'd like to make another?
         

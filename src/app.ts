@@ -80,5 +80,9 @@ app.post('/set-cover', spotifyController.replacePlaylistCoverEndpoint);
 
 app.get('/photo/', unsplashController.getRandomPhotoEndpoint);
 
+app.get('/gallery/', (req, res) => {
+  res.send('Not Implemented yet')
+})
+
 
 export default app;
