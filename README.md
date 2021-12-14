@@ -69,6 +69,8 @@ It'll automatically test the code in the PR, and lets people have a chance to lo
 - .eslintignore: File saying what files the code linter should ignore
 - .eslintrc.js: Config file for our code linter (eslint). The linter helps check our code for errors that might still compile but are probably not intended behavior, and also helps fix some formatting issues too.
 - .gitignore: Files that will not be committed in our repo
+- .prettierignore: Files that are ignored by the code formatter, Prettier
+- .prettierrc.json: Config file for our code formatter, Prettier
 - jest.config.js: The configuration for the tester, jest. This is what we use to run automated tests on our code.
 - package-lock.json: File that defines specific versions for every package that is used in the project (_all_ dependencies)
 - **package.json: The project setup file for Node! Defines what packages we rely on, what scripts we run for building/testing/everything else.**

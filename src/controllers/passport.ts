@@ -26,17 +26,15 @@ passport.serializeUser((user: IUser, done) => {
 /**
  * Gets the full user object from whatever we stored unique to the user.
  */
-passport.deserializeUser((id: string, done) => {
-  // TODO: Fetch user from our db
+passport.deserializeUser(async (id: string, done) => {
   console.log("Deserialize");
   console.log(`User id: ${id}`);
-  UserController.findUserByID(id)
-    .then((user) => {
-      done(null, user);
-    })
-    .catch((error) => {
-      done(error, false);
-    });
+  try {
+    const user = await UserController.findUserByID(id);
+    done(null, user);
+  } catch (error) {
+    done(error, false);
+  }
 });
 
 passport.use(
