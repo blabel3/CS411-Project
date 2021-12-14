@@ -1,5 +1,5 @@
 interface ICover {
-    image: string;
+  image: string;
 }
 
 export default ICover;
