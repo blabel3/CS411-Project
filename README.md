@@ -10,6 +10,7 @@ Website that lets people generate unique album covers for their spotify playlist
 - [Running](#Running)
 - [Contributing](#Contributing)
 - [Repo Structure Explanation](#Repo-Structure-Explanation)
+- [Next Steps](#Next-Steps)
 
 # Installing
 
@@ -77,3 +78,12 @@ It'll automatically test the code in the PR, and lets people have a chance to lo
 - tsconfig.json: Configuration file for the typescript compiler. This is how we build from typescript in src/ to compatible javascript in dist/
 
 Also, we should all have an .env file with important variables, but this will never be checked in to source control!
+
+# Next Steps
+
+To get the MVP done, we focused on the core functionality of generating a playlist. Some features we didn't implement were:
+
+- Shows all of a user's playlists on the home screen after they log in
+- Gallery page which shows all the album covers they have generated so far and what playlist it was for.
+
+The app has things built in to be added on in the future, like a link to the gallery page and a simple Cover object type for implementing the gallery too. But we decided that was outside the scope of the initial project. 
