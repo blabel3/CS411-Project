@@ -3,6 +3,7 @@ import app from "../src/app";
 
 describe("GET /photo/", () => {
     it("should respond with a random photo", (done) => {
+        jest.setTimeout(15000);
         request(app).get("/photo")
             .expect(200)
             .expect(response => {
@@ -12,6 +13,7 @@ describe("GET /photo/", () => {
             .end(done);
     });
     it("should handle query parameters", (done) => {
+        jest.setTimeout(15000);
         request(app).get("/photo?search=prototype")
             .expect(200)
             .expect(response => {

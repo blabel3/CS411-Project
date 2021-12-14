@@ -71,9 +71,9 @@ const ensureAuthenticated = (req, res, next) => {
   res.redirect('/auth/spotify');
 };
 
-app.get('/playlist/', spotifyController.playlistEndpoint)
+app.get('/playlist/', spotifyController.playlistEndpoint);
 
-app.get('/photo/', unsplashController.getRandomPhoto);
+app.get('/photo/', unsplashController.getRandomPhotoEndpoint);
 
 
 export default app;

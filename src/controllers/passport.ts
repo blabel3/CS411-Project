@@ -6,7 +6,7 @@ import * as UserController from "./UserController";
 
 const callbackURL = process.env.COSMOS_DATABASE == "Users-Test" ? 
 `http://localhost:${process.env.PORT}/auth/spotify/callback` :
-`https://cs411-spotify-cover-generator.azurewebsites.net/auth/spotify/callback`
+`https://cs411-spotify-cover-generator.azurewebsites.net/auth/spotify/callback`;
 
 /**
  * Session setup: Passport needs to be able to serialize and deserialize the users. 

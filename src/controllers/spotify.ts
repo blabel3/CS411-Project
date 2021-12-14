@@ -1,4 +1,6 @@
 import SpotifyWebApi from 'spotify-web-api-node';
+import IPlaylistFeatures from '../models/IPlaylistFeatures';
+import { getPhotoForPlaylist } from './unsplash';
 
 const callbackURL = process.env.COSMOS_DATABASE == "Users-Test" ? 
 `http://localhost:${process.env.PORT}/auth/spotify/callback` :
@@ -56,6 +58,28 @@ function cleanPlaylistInput(playlistInput: string): string {
   }
 }
 
+function getAudioFeatureAverages(featuresResponse: SpotifyApi.MultipleAudioFeaturesResponse): IPlaylistFeatures {
+  const importantAudioFeatures = featuresResponse["audio_features"]
+    .map( ({danceability, energy, loudness, speechiness, acousticness,
+              instrumentalness, liveness, valence, tempo}) =>
+          ({danceability, energy, loudness, speechiness, acousticness,
+              instrumentalness, liveness, valence, tempo})
+        );
+
+  const featureAverages = importantAudioFeatures.reduce((prev, next) => {
+      for (const feature in prev) {
+          prev[feature] += next[feature];
+      }
+      return prev;
+  });
+
+  for (const feature in featureAverages) {
+      featureAverages[feature] /= importantAudioFeatures.length;
+  }
+
+  return featureAverages;
+}
+
 export async function playlistEndpoint(req, res) {
   const input = req.query?.playlist;
   if (!input){
@@ -72,9 +96,19 @@ export async function playlistEndpoint(req, res) {
   const playlistData = await getPlaylistData(cleanInput);
 
   const trackIDs = playlistData["tracks"]["items"].map(song => song["track"]["id"]);
-  console.log(playlistData["tracks"]["items"]);
 
-  const audioFeaturesData = await getAudioFeaturesForTracks(trackIDs);
+  const audioFeaturesObject = await getAudioFeaturesForTracks(trackIDs);
+  const featureAverages = getAudioFeatureAverages(audioFeaturesObject);
 
-  res.send(audioFeaturesData);
+  console.log(featureAverages);
+
+  try {
+    const photo = await getPhotoForPlaylist(featureAverages);
+    res.render("generated_cover", {
+      coverImage: photo
+    });
+  } catch (error) {
+    res.send(error);
+  }
+  
 }

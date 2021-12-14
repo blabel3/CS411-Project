@@ -1,0 +1,18 @@
+html
+    style 
+        include styles.css
+
+body
+    header
+        include includes/nav.pug
+        h1 New Playlist Cover
+    body
+        .center
+            h2 Your new playlist cover:
+        .center 
+            img(src=coverImage)
+        .center
+            if displayName
+                button Set as playlist cover  
+            button(onClick="window.location.reload();") Regenerate  
+        
