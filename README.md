@@ -1,5 +1,7 @@
 # CS411-Project [![CI Lint & Testing](https://github.com/blabel3/CS411-Project/actions/workflows/verify-code.yml/badge.svg)](https://github.com/blabel3/CS411-Project/actions/workflows/verify-code.yml)
 
+Deployed at [https://cs411-spotify-cover-generator.azurewebsites.net/](https://cs411-spotify-cover-generator.azurewebsites.net/), check it out!
+
 ## Spotify Album Cover Generator
 
 Website that lets people generate unique album covers for their spotify playlists. Currently spotify's automatic playlist covers are just some of the album arts stitched together, and the creator has to go and make an image themself if they want something memorable for it. Our app would make an album cover that fits the playlist given the moods of the songs automatically. It will use infortmation from the Spotify API like the lyric keywords, key, bpm, dancability, and song titles to determine images, shapes and colors to use. It will also use image APIs like Unsplash or Artbreeder to find cool images to include in the playlist cover.
@@ -63,7 +65,8 @@ It'll automatically test the code in the PR, and lets people have a chance to lo
 - prototype/: Built files we made for the third assignment, making a prototype
 - **src/: All the actual source code for our project! The main stuff**
   - src/views: frontend code (currently using Pug with Node to render html)
-  - src/controllers: Where the code for our endpoints lives. The meat.
+  - src/controllers: Where the code for our endpoints lives with our logic. The important things!
+  - src/models: Definitions for some types we use.
   - src/server.ts: Web server setup/loading configuration.
   - src/app.ts: The main application code, defining our routes and telling it what to run when people go to those endpoints of our server.
 - **test/: All the tests written for our source code! Also very important.**
