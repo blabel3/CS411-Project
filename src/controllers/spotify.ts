@@ -110,7 +110,7 @@ export async function playlistEndpoint(req, res) {
   }
 
   const token = req.user?.accessToken;
-  console.log(token)
+  console.log(token);
   const playlistData = await getPlaylistData(cleanInput, token);
 
   const trackIDs = playlistData["tracks"]["items"].map(song => song["track"]["id"]);
@@ -151,9 +151,9 @@ export async function replacePlaylistCoverEndpoint(req, res) {
     return;
   }
   // Must remove this part of the data url to work properly
-  coverImage = coverImage.substring("data:image/jpeg;base64,".length)
+  coverImage = coverImage.substring("data:image/jpeg;base64,".length);
 
-  const user: IUser = req.user
+  const user: IUser = req.user;
   if (!req.user){
     console.log("No user found.");
     res.send("Error: no user found.");
