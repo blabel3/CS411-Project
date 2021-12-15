@@ -89,6 +89,7 @@ To get the MVP done, we focused on the core functionality of generating a playli
 
 - Shows all of a user's playlists on the home screen after they log in
 - Gallery page which shows all the album covers they have generated so far and what playlist it was for.
+- Some automatic testing was done, but we could have definitely spent more time writing tests and get more code coverage than we have now.
 
 The app has things built in to be added on in the future, like a link to the gallery page and a simple Cover object type for implementing the gallery too. But we decided that was outside the scope of the initial project. 
 
