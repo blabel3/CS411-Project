@@ -13,6 +13,7 @@ Website that lets people generate unique album covers for their spotify playlist
 - [Contributing](#Contributing)
 - [Repo Structure Explanation](#Repo-Structure-Explanation)
 - [Next Steps](#Next-Steps)
+- [Project Demo Video](#Project-Demo-Video)
 
 # Installing
 
@@ -90,3 +91,8 @@ To get the MVP done, we focused on the core functionality of generating a playli
 - Gallery page which shows all the album covers they have generated so far and what playlist it was for.
 
 The app has things built in to be added on in the future, like a link to the gallery page and a simple Cover object type for implementing the gallery too. But we decided that was outside the scope of the initial project. 
+
+# Project Demo Video
+
+https://user-images.githubusercontent.com/8906125/146107146-eaea27d1-2b19-45e0-9551-f4c4b95bc4e2.mp4
+
