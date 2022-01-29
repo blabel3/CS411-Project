@@ -1,5 +1,9 @@
 # CS411-Project [![CI Lint & Testing](https://github.com/blabel3/CS411-Project/actions/workflows/verify-code.yml/badge.svg)](https://github.com/blabel3/CS411-Project/actions/workflows/verify-code.yml)
 
+<p align="center">
+  <img width="400" height="400" src="https://user-images.githubusercontent.com/8906125/151638207-1d975d86-5fcd-4bd0-aa18-b758d3f2172b.png" alt="spotify-cover-generator-icon">
+</p>
+
 Deployed at [https://cs411-spotify-cover-generator.azurewebsites.net/](https://cs411-spotify-cover-generator.azurewebsites.net/), check it out!
 
 ## Spotify Album Cover Generator
